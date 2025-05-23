@@ -1,4 +1,3 @@
-
 void mouseReleased() {
   
   if (mode == INTRO) {

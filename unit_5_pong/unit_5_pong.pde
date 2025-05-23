@@ -11,23 +11,29 @@ final int GAMEOVER = 4;
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
 float ballx, bally, balld; //ball
 
-void setup(){
-  size(800,600);
+boolean wkey, skey, upkey, downkey;
+
+
+void setup() {
+  size(800, 600);
   mode = GAME;
-  
+
   //initialize paddles
   leftx = 0;
   lefty = height/2;
   leftd = 200;
-  
+
   rightx = width;
   righty = height/2;
   rightd = 200;
-  
+
   //initialize ball
   ballx = width/2;
   bally = height/2;
   balld = 100;
+
+  //initialize keyboard variables
+  wkey = skey = upkey = downkey = false;
 }
 
 void draw() {
@@ -38,7 +44,8 @@ void draw() {
   } else if (mode == PAUSE) {
     pause();
   } else if (mode == GAMEOVER) {
-    gmaeover();
+    gameover();
   } else {
-    printin("mode error:" + mode);
+    println("mode error:" + mode);
   }
+}
