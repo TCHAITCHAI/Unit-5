@@ -2,6 +2,6 @@ void intro() {
   
 }
 
-void introCLicks(){
-  
+void introClicks(){
+  mode = GAME;
 }
