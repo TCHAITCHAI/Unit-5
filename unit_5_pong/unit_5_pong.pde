@@ -1,6 +1,7 @@
 //Pong!
 
 //mode framework
+color orange = #ED7B11;
 int mode;
 final int INTRO = 1;
 final int GAME = 2;
@@ -16,7 +17,7 @@ boolean wkey, skey, upkey, downkey;
 
 void setup() {
   size(800, 600);
-  mode = GAME;
+  mode = INTRO;
 
   //initialize paddles
   leftx = 0;
