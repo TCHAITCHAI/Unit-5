@@ -7,6 +7,7 @@ final int INTRO = 1;
 final int GAME = 2;
 final int PAUSE = 3;
 final int GAMEOVER = 4;
+PFont arcade;
 
 //entity varaibles
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
@@ -18,7 +19,12 @@ boolean wkey, skey, upkey, downkey;
 void setup() {
   size(800, 600);
   mode = INTRO;
-
+  
+  if (mode == INTRO) {
+  ballX = random(width * 0.25, width * 0.75);
+  ballY = random(height * 0.25, height * 0.75);
+  }
+  
   //initialize paddles
   leftx = 0;
   lefty = height/2;
