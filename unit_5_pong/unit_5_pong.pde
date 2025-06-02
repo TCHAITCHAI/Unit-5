@@ -2,6 +2,9 @@
 
 //mode framework
 color orange = #ED7B11;
+color blue = #0066FF;
+color red = #FF3333;
+
 int mode;
 final int INTRO = 1;
 final int GAME = 2;
@@ -9,11 +12,15 @@ final int PAUSE = 3;
 final int GAMEOVER = 4;
 PFont arcade;
 
+
 //entity varaibles
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
 float ballx, bally, balld; //ball
 
 boolean wkey, skey, upkey, downkey;
+
+//scoring
+int leftscore, rightscore, timer;
 
 
 void setup() {
