@@ -16,6 +16,9 @@ PFont arcade;
 //entity varaibles
 float leftx, lefty, leftd, rightx, righty, rightd; //paddles
 float ballx, bally, balld; //ball
+float originalBalld = 80;  // matches initial size in setup()
+float minBalld = 30;       // minimum allowed size
+
 
 boolean wkey, skey, upkey, downkey;
 
@@ -35,16 +38,16 @@ void setup() {
   //initialize paddles
   leftx = 0;
   lefty = height/2;
-  leftd = 200;
+  leftd = 100;
 
   rightx = width;
   righty = height/2;
-  rightd = 200;
+  rightd = 100;
 
   //initialize ball
   ballx = width/2;
   bally = height/2;
-  balld = 100;
+  balld = 80;
 
   //initialize keyboard variables
   wkey = skey = upkey = downkey = false;
