@@ -1,6 +1,21 @@
-float vx = 6;
-float vy = 9;
+float vx = 4;
+float vy = 6;
+float maxSpeed = 15;
+color orange = #ED7B11;
+color blue = #0066FF;
+color red = #FF3333;
 
+
+//entity varaibles
+float leftx, lefty, leftd, rightx, righty, rightd; //paddles
+float ballx, bally, balld; //ball
+float originalBalld = 80;  // matches initial size in setup()
+float minBalld = 30;       // minimum allowed size
+
+PFont arcade;
+
+//scoring
+int leftscore, rightscore, timer;
 
 void game() {
   background(0);
@@ -28,6 +43,9 @@ void game() {
   if (skey) lefty += 8;
   if (upkey) righty -= 8;
   if (downkey) righty += 8;
+  
+  lefty = constrain(lefty, leftd / 2, height - leftd / 2);
+  righty = constrain(righty, rightd / 2, height - rightd / 2);
 
   // move ball
   ballx += vx;
@@ -44,10 +62,13 @@ void game() {
     float offset = (bally - lefty) / (leftd / 2);
     float angle = offset * PI / 4;
     float speed = sqrt(vx * vx + vy * vy);
-    vx = speed * cos(angle);
-    vy = speed * sin(angle);
+    
+    // accelerate
+    vx = speed * cos(angle)*1.05; 
+    vy = speed * sin(angle)*1.05;
 
     balld = max(minBalld, balld - 3);
+    limitSpeed();
   }
 
   // paddle collision (right)
@@ -56,10 +77,13 @@ void game() {
     float offset = (bally - righty) / (rightd / 2);
     float angle = offset * PI / 4;
     float speed = sqrt(vx * vx + vy * vy);
-    vx = -speed * cos(angle);
-    vy = speed * sin(angle);
+    
+    // accelerate
+    vx = -speed * cos(angle)*1.05;
+    vy = speed * sin(angle)*1.05;
 
     balld = max(minBalld, balld - 3);
+    limitSpeed();
   }
 
   // scoring
@@ -81,6 +105,8 @@ void game() {
   if (vy < 0) vy *= -1;
 }
 
+
+
 // Bottom wall
 if (bally > height - balld / 2) {
   bally = height - balld / 2 - 1; // Nudge slightly away
@@ -88,15 +114,24 @@ if (bally > height - balld / 2) {
 }
 }
 
-
+// reset at random places
 void resetBall() {
   ballx = width / 2;
   bally = height / 2;
-  vx = random(6, 9) * (random(1) < 0.5 ? -1 : 1);
-  vy = random(6, 9) * (random(1) < 0.5 ? -1 : 1);
+  vx = random(4, 6) * (random(1) < 0.5 ? -1 : 1);
+  vy = random(4, 6) * (random(1) < 0.5 ? -1 : 1);
   balld = originalBalld;  // Reset ball size
 }
 
-void gameClicks() {
+// max speed
+void limitSpeed() {
+  float speed = sqrt(vx * vx + vy * vy);
+  if (speed > maxSpeed) {
+    float scale = maxSpeed / speed;
+    vx *= scale;
+    vy *= scale;
+  }
+}
+void gameClicks(){
   
 }

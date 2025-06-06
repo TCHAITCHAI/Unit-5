@@ -1,34 +1,19 @@
 //Pong!
 
 //mode framework
-color orange = #ED7B11;
-color blue = #0066FF;
-color red = #FF3333;
-
 int mode;
 final int INTRO = 1;
 final int GAME = 2;
 final int PAUSE = 3;
 final int GAMEOVER = 4;
-PFont arcade;
-
-
-//entity varaibles
-float leftx, lefty, leftd, rightx, righty, rightd; //paddles
-float ballx, bally, balld; //ball
-float originalBalld = 80;  // matches initial size in setup()
-float minBalld = 30;       // minimum allowed size
-
-
 boolean wkey, skey, upkey, downkey;
-
-//scoring
-int leftscore, rightscore, timer;
-
 
 void setup() {
   size(800, 600);
+  frameRate(60);
   mode = INTRO;
+  
+
   
   if (mode == INTRO) {
   ballX = random(width * 0.25, width * 0.75);

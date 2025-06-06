@@ -3,6 +3,14 @@ void keyPressed(){
   if (key == 's'|| key == 'S') skey = true;
   if (keyCode == UP) upkey = true;
   if (keyCode == DOWN) downkey = true;
+  
+  if (key == ENTER) {
+    if (mode == GAME) {
+      mode = PAUSE;
+    } else if (mode == PAUSE) {
+      mode = GAME;
+    }
+  }
 }
 
 void keyReleased(){
