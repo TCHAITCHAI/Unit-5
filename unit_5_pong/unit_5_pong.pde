@@ -6,6 +6,7 @@ final int INTRO = 1;
 final int GAME = 2;
 final int PAUSE = 3;
 final int GAMEOVER = 4;
+final int MODESELECT = 5;
 boolean wkey, skey, upkey, downkey;
 
 void setup() {
@@ -41,6 +42,8 @@ void setup() {
 void draw() {
   if (mode == INTRO) {
     intro();
+  } else if (mode == MODESELECT) {
+    modeSelect();
   } else if (mode == GAME) {
     game();
   } else if (mode == PAUSE) {

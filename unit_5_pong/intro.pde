@@ -102,7 +102,7 @@ void introClicks() {
         mouseX < buttonX + buttonW / 2 &&
         mouseY > buttonY - buttonH / 2 &&
         mouseY < buttonY + buttonH / 2) {
-      mode = GAME;
+      mode = MODESELECT;
     }
   }
 }

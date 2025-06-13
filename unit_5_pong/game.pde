@@ -13,6 +13,7 @@ float originalBalld = 80;  // matches initial size in setup()
 float minBalld = 30;       // minimum allowed size
 
 PFont arcade;
+boolean isSinglePlayer;
 
 //scoring
 int leftscore, rightscore, timer;
@@ -39,10 +40,27 @@ void game() {
   circle(rightx, righty, rightd);
 
   // move paddles
+if (isSinglePlayer) {
+  // Left paddle = human
   if (wkey) lefty -= 8;
   if (skey) lefty += 8;
+
+  // Right paddle = bot
+  float speed = 5;
+  if (bally > righty + 10) righty += speed;
+  else if (bally < righty - 10) righty -= speed;
+
+} else {
+  // Multiplayer 
+  // Left paddle = player 1
+  if (wkey) lefty -= 8;
+  if (skey) lefty += 8;
+
+  // Right paddle = player 2
   if (upkey) righty -= 8;
   if (downkey) righty += 8;
+}
+
   
   lefty = constrain(lefty, leftd / 2, height - leftd / 2);
   righty = constrain(righty, rightd / 2, height - rightd / 2);
@@ -95,10 +113,15 @@ void game() {
     leftscore++;
     resetBall();
   }
-
+  
+  if (leftscore == 7 || rightscore == 7) {
+    mode = GAMEOVER;
+  }
+  
   // draw ball
   fill(orange);
   circle(ballx, bally, balld);
+  
   
   if (bally < balld / 2) {
   bally = balld / 2 + 1; // Nudge slightly away
@@ -132,6 +155,8 @@ void limitSpeed() {
     vy *= scale;
   }
 }
+
+
 void gameClicks(){
   
 }
